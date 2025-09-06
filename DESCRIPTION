@@ -1,0 +1,40 @@
+Package: barn
+Title: Preprocessing and Feature Engineering Steps before Modeling
+Version: 0.0.0.9000
+Authors@R: 
+    person("Jordi", "Rosell", , "jroselln@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-4349-1458"))
+Description: The package provides pipeable functions to simplify
+    preprocessing of tabular data prior to machine learning modeling.
+    Users can combine multiple datasets, define feature engineering steps
+    (such as creating new predictors from nominal or numeric columns), and
+    then split the data back into preprocessed datasets ready to be used
+    in machine learning workflows.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Language: en
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2.9000
+Depends: 
+    R (>= 4.3.0)
+Suggests: 
+    devtools,
+    here,
+    pak,
+    pkgdown,
+    purrr,
+    rhub,
+    roxygen2,
+    testthat,
+    usethis
+Imports: 
+    cli,
+    crayon,
+    dplyr,
+    ellmer,
+    glue,
+    rlang,
+    stringr,
+    tibble (>= 3.1.0),
+    tidyr,
+    utils

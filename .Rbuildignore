@@ -1,0 +1,5 @@
+^LICENSE\.md$
+^[\.]?air\.toml$
+^\.vscode$
+docs/
+_pkgdown.yml
