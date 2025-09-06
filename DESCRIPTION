@@ -38,5 +38,5 @@ Imports:
     tibble (>= 3.1.0),
     tidyr,
     utils
-URL: https://github.com/jrosell/barn
+URL: https://github.com/jrosell/barn, https://jrosell.github.io/barn/
 BugReports: https://github.com/jrosell/barn/issues

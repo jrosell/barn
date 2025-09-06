@@ -3,3 +3,7 @@
 ^\.vscode$
 docs/
 _pkgdown.yml
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
