@@ -9,7 +9,7 @@
 #' @param nominal_sufix An optional string for dealing with nominal variables. Defaults to "_cat".
 #' @param numeric_sufix An optional string for dealing with numeric variables. Defaults to "_num".
 #'
-#' @returns A list containing the combined data frame, row counts,
+#' @returns A barn object containing the combined data frame, row counts,
 #'
 #' @examples
 #' full <- data.frame(id = 1:3, p1 = c("A", "B", "C"), p2 = 10:12, y = 1:3)
@@ -179,7 +179,7 @@ harvest <- function(barn_obj) {
 #' A function to transform numeric and character columns in a `barn` object into new factor columns.
 #' It appends "_num" for numeric columns, "_cat" for character columns, and renames both to factors.
 #' Original columns are deleted from the combined data frame within the barn object.
-#' @param barn_obj A `barn` object inheriting from `class("barn")`.
+#' @param barn_obj A `barn` object, created by [barn()].
 #' @param numeric_suffx The suffix for new numeric factor columns. Default is "_num".
 #' @param nominal_suffix The suffix for new nominal factor columns. Default is "_cat".
 #'
@@ -231,7 +231,7 @@ plant_new_numeric_factors <- function(
 #'
 #' @param barn_obj An instance of class "barn".
 #'
-#' @returns The modified `barn_obj` with encoded plant labels in both character and factor columns.
+#' @returns The modified `barn_obj` with the transformed combined data frame.
 #'
 #' @export
 plant_label_encode <- function(barn_obj) {
@@ -258,7 +258,7 @@ plant_label_encode <- function(barn_obj) {
 #' @param nominal_suffix A character string that specifies the suffix for the newly created columns. Optional, default is "_cat".
 #'
 #' @returns
-#' The updated barn object with new nominal pairs.
+#' The modified `barn_obj` with the transformed combined data frame.
 #' @export
 plant_new_nominal_pairs <- function(
   barn_obj,
@@ -296,11 +296,11 @@ plant_new_nominal_pairs <- function(
 #' @description
 #' Frequency encoding of nominal variables.
 #'
-#' @param barn_obj A Barn object, typically from the `bbarchart` package.
+#' @param barn_obj A Barn object, created by [barn()].
 #' @param nominal_suffix The suffix applied to column names. Defaults to "_cat".
 #'
 #' @returns
-#' Modified Barn object with encoded count columns for categorical variables.
+#' The modified `barn_obj` with the transformed combined data frame.
 #'
 #' @export
 plant_count_encode <- function(

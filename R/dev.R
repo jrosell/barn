@@ -2,8 +2,9 @@
 #' @examples
 #' if (FALSE) {
 #'   devtools::load_all(); rebuild_package_and_check(build_site = TRUE)
+#'   rhub::rhub_setup()
 #'   rhub::rhub_check(platforms = "windows", r_versions = "4.3")
-#'   rhub::rhub_check(platforms = "windows", r_versions = "devel")
+#'   rhub::rhub_check(platforms = "linux")
 #'   usethis::use_version(which = "dev", push = FALSE)
 #'   usethis::use_github_release()
 #'   tools::showNonASCIIfile("R/barn.R")
