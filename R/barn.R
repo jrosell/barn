@@ -319,3 +319,57 @@ plant_count_encode <- function(
   barn_obj$combined <- combined
   barn_obj
 }
+
+
+#' Extract decimals in numeric features
+#'
+#' @description
+#' Creates new integer columns by extracting specific digits from numeric columns.
+#' This function emulates a feature engineering technique often used in machine learning.
+#'
+#' @param barn_obj A `barn` object, created by [barn()].
+#' @param numeric_sufix The suffix used to identify numeric columns to process. Defaults to "_num".
+#' @param from The starting digit position to extract (e.g., 1 for the first decimal place). Defaults to 1.
+#' @param to The ending digit position to extract (e.g., 9 for the ninth decimal place). Defaults to 9.
+#'
+#' @returns
+#' The modified `barn_obj` with the transformed combined data frame.
+#'
+#' @examples
+#' df <- tibble::tibble(x_num = c(1.234, 5.678, NA))
+#' b <- barn(df) |> plant_decimals_extract(from = 1, to = 3)
+#' harvest(b)[[1]]
+#' @export
+plant_decimals_extract <- function(
+  barn_obj,
+  numeric_sufix = "_num",
+  from = 1,
+  to = 10
+) {
+  stopifnot(inherits(barn_obj, "barn"))
+  if (!is.numeric(from) || !is.numeric(to)) {
+    stop("'from' and 'to' must be numeric.")
+  }
+  if (from <= 0 || to <= 0) {
+    stop("'from' and 'to' must be positive integers.")
+  }
+  if (from > to) {
+    stop("'from' must be less than or equal to 'to'.")
+  }
+  combined <- barn_obj$combined
+  numeric_cols <- names(combined)[str_detect(names(combined), numeric_sufix)]
+  if (length(numeric_cols) == 0) {
+    warning("No numeric columns found with the specified suffix. Skipping.")
+    return(barn_obj)
+  }
+  for (c in numeric_cols) {
+    for (k in from:to) {
+      original_name <- str_replace(c, numeric_sufix, "")
+      new_col_name <- paste0(original_name, "_d", k, numeric_sufix)
+      combined[[new_col_name]] <- as.integer((combined[[c]] * 10^k) %% 10)
+      combined[[new_col_name]][is.na(combined[[new_col_name]])] <- -1
+    }
+  }
+  barn_obj$combined <- combined
+  barn_obj
+}

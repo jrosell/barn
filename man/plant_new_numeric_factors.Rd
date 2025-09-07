@@ -11,7 +11,7 @@ plant_new_numeric_factors(
 )
 }
 \arguments{
-\item{barn_obj}{A \code{barn} object inheriting from \code{class("barn")}.}
+\item{barn_obj}{A \code{barn} object, created by \code{\link[=barn]{barn()}}.}
 
 \item{numeric_suffx}{The suffix for new numeric factor columns. Default is "_num".}
 

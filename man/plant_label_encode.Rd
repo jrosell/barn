@@ -10,7 +10,7 @@ plant_label_encode(barn_obj)
 \item{barn_obj}{An instance of class "barn".}
 }
 \value{
-The modified \code{barn_obj} with encoded plant labels in both character and factor columns.
+The modified \code{barn_obj} with the transformed combined data frame.
 }
 \description{
 Transform nominal columns from factors to integers.

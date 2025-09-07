@@ -18,6 +18,7 @@
 #' @importFrom rlang enquos
 #' @importFrom rlang eval_tidy
 #' @importFrom stringr str_detect
+#' @importFrom stringr str_replace
 #' @importFrom stringr str_replace_all
 #' @importFrom tidyr pivot_longer
 #' @importFrom tidyr pivot_wider

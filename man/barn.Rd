@@ -21,7 +21,7 @@ barn(..., nominal_sufix = "_cat", numeric_sufix = "_num")
 \item{form_width}{An integer specifying the minimum column width (in characters). Default is 30.}
 }
 \value{
-A list containing the combined data frame, row counts,
+A barn object containing the combined data frame, row counts,
 }
 \description{
 Combine multiple data frames based on their common columns.

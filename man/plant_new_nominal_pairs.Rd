@@ -12,7 +12,7 @@ plant_new_nominal_pairs(barn_obj, nominal_suffix = "_cat")
 \item{nominal_suffix}{A character string that specifies the suffix for the newly created columns. Optional, default is "_cat".}
 }
 \value{
-The updated barn object with new nominal pairs.
+The modified \code{barn_obj} with the transformed combined data frame.
 }
 \description{
 A function to create new features based on combinations of categorical columns in a barn object.

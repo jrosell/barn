@@ -7,12 +7,12 @@
 plant_count_encode(barn_obj, nominal_suffix = "_cat")
 }
 \arguments{
-\item{barn_obj}{A Barn object, typically from the \code{bbarchart} package.}
+\item{barn_obj}{A Barn object, created by \code{\link[=barn]{barn()}}.}
 
 \item{nominal_suffix}{The suffix applied to column names. Defaults to "_cat".}
 }
 \value{
-Modified Barn object with encoded count columns for categorical variables.
+The modified \code{barn_obj} with the transformed combined data frame.
 }
 \description{
 Frequency encoding of nominal variables.

@@ -97,7 +97,8 @@ rebuild_package_and_check <- function(build_site = FALSE) {
     "stringr",
     c(
       "str_detect",
-      "str_replace_all"
+      "str_replace_all",
+      "str_replace"
     )
   )
   usethis::use_import_from(

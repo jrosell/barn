@@ -91,3 +91,14 @@ test_that("plant_count_encode encode nominal columns with its frequencies", {
   )
   expect_equal(class(result$a_b_cat_count), "integer")
 })
+
+
+test_that("plant_decimals_extract correctly extracts digits from numeric columns", {
+  # Test with a single numeric column
+  df <- tibble::tibble(x_num = c(1.234, 5.678, NA))
+  b <- barn(df) |> plant_decimals_extract(from = 1, to = 2)
+  result <- harvest(b)[[1]]
+  expect_equal(result$x_d1_num, c(2, 6, -1))
+  expect_equal(result$x_d2_num, c(3, 7, -1))
+  expect_named(result, c("x_num", "x_d1_num", "x_d2_num"))
+})
