@@ -285,7 +285,7 @@ plant_new_nominal_pairs <- function(
     } else {
       max(c2, na.rm = TRUE) + 1
     }
-    combined[[new_col_name]] <- as.integer((c1 - 1) * n2 + (c2 - 1))
+    combined[[new_col_name]] <- as.double((c1 - 1) * n2 + (c2 - 1))
   }
   barn_obj$combined <- combined
   barn_obj
