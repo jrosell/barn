@@ -7,6 +7,14 @@
 \description{
 The package provides pipeable functions to simplify preprocessing of tabular data prior to machine learning modeling. Users can combine multiple datasets, define feature engineering steps (such as creating new predictors from nominal or numeric columns), and then split the data back into preprocessed datasets ready to be used in machine learning workflows.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://jrosell.github.io/barn}
+  \item Report bugs at \url{https://github.com/jrosell/barn/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Jordi Rosell \email{jroselln@gmail.com} (\href{https://orcid.org/0000-0002-4349-1458}{ORCID})
 

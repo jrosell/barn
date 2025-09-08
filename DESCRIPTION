@@ -11,6 +11,8 @@ Description: The package provides pipeable functions to simplify
     then split the data back into preprocessed datasets ready to be used
     in machine learning workflows.
 License: MIT + file LICENSE
+URL: https://jrosell.github.io/barn
+BugReports: https://github.com/jrosell/barn/issues
 Encoding: UTF-8
 Language: en
 Roxygen: list(markdown = TRUE)
