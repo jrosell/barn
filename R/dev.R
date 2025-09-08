@@ -27,8 +27,8 @@ rebuild_package_and_check <- function(build_site = FALSE) {
       role = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-4349-1458")
     ),
-    # "URL" = "https://jrosell.github.io/jrrosell",
-    # "BugReports" = "https://github.com/jrosell/jrrosell/issues",
+    "URL" = "https://jrosell.github.io/barn",
+    "BugReports" = "https://github.com/jrosell/barn/issues",
     Language = "en"
   ))
   # usethis::use_pkgdown_github_pages()
