@@ -102,3 +102,15 @@ test_that("plant_decimals_extract correctly extracts digits from numeric columns
   expect_equal(result$x_d2_num, c(3, 7, -1))
   expect_named(result, c("x_num", "x_d1_num", "x_d2_num"))
 })
+
+
+test_that("plant_decimals_round correctly rounds numeric columns", {
+  df <- tibble::tibble(x_num = c(1.23456789, 5.67891234, NA))
+  b <- barn(df) |> plant_decimals_round(precisions = c(2, 3))
+  result <- harvest(b)[[1]]
+  expect_named(result, c("x_num", "x_r2_num", "x_r3_num"))
+  expect_equal(result$x_r2_num, c(1.23, 5.68, NA))
+  expect_equal(result$x_r3_num, c(1.235, 5.679, NA))
+  expect_type(result$x_r2_num, "double")
+  expect_type(result$x_r3_num, "double")
+})

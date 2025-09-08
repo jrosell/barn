@@ -373,3 +373,56 @@ plant_decimals_extract <- function(
   barn_obj$combined <- combined
   barn_obj
 }
+
+
+#' Round numeric features to specified precisions
+#'
+#' @description
+#' Creates new numeric columns by rounding existing numeric columns
+#' at specified decimal precisions. This is useful for feature engineering,
+#' where different rounding granularities may capture meaningful patterns.
+#'
+#' @param barn_obj A `barn` object, created by [barn()].
+#' @param numeric_sufix The suffix used to identify numeric columns to process.
+#'   Defaults to "_num".
+#' @param precisions A numeric vector specifying the number of decimal
+#'   places to round to (e.g., `c(9, 8)`).
+#'
+#' @returns
+#' The modified `barn_obj` with the transformed combined data frame.
+#'
+#' @examples
+#' df <- tibble::tibble(x_num = c(1.23456789))
+#' b <- barn(df) |> plant_decimals_round(precisions = c(2, 3))
+#' harvest(b)[[1]]
+#' harvest(b)[[1]]$x_r2_num
+#' harvest(b)[[1]]$x_r3_num
+#' @export
+plant_decimals_round <- function(
+  barn_obj,
+  numeric_sufix = "_num",
+  precisions = c(9, 8)
+) {
+  stopifnot(inherits(barn_obj, "barn"))
+  if (!is.numeric(precisions)) {
+    stop("'precisions' must be a numeric vector.")
+  }
+
+  combined <- barn_obj$combined
+  numeric_cols <- names(combined)[str_detect(names(combined), numeric_sufix)]
+  if (length(numeric_cols) == 0) {
+    warning("No numeric columns found with the specified suffix. Skipping.")
+    return(barn_obj)
+  }
+
+  for (c in numeric_cols) {
+    original_name <- str_replace(c, numeric_sufix, "")
+    for (r in precisions) {
+      new_col_name <- paste0(original_name, "_r", r, numeric_sufix)
+      combined[[new_col_name]] <- round(combined[[c]], r)
+    }
+  }
+
+  barn_obj$combined <- combined
+  barn_obj
+}
