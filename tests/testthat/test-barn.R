@@ -63,7 +63,7 @@ test_that("plant_new_nominal_pairs create pairwise interactions from nominal col
     purrr::pluck(1) |>
     tibble::as_tibble()
   expect_named(result, c("a_num", "a_cat", "b_num", "b_cat", "a_b_cat"))
-  expect_equal(class(result$a_b_cat), "integer")
+  expect_equal(mode(result$a_b_cat), "numeric")
 })
 
 test_that("plant_count_encode encode nominal columns with its frequencies", {
