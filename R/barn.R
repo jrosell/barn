@@ -426,3 +426,39 @@ plant_decimals_round <- function(
   barn_obj$combined <- combined
   barn_obj
 }
+
+#' Summarize Barn Object
+#'
+#' @description
+#' A function to group and summarize to add aggregations to a \code{barn_obj} using specified variables and expressions.
+#' WARNING: Risk of overfitting and bad generalization if not done
+#' when resampling.
+#'
+#' @param barn_obj An object of class 'barn'.
+#' @param .by Varible(s) to group by. Currently unused; must be empty.
+#' @param ... Expressions to compute summarizing values.
+#'
+#' @returns A modified \code{barn_obj} with summarized data in the combined slot.
+#' @export
+plant_summarize <- function(barn_obj, .by = NULL, ...) {
+  stopifnot(inherits(barn_obj, "barn"))
+  combined <- barn_obj$combined
+
+  # capture summarise expressions
+  dots <- rlang::enquos(...)
+
+  # turn grouping vars into characters
+  by_syms <- rlang::ensyms(.by)
+  by_vars <- purrr::map_chr(by_syms, rlang::as_string)
+
+  # summarise
+  agg <- combined |>
+    dplyr::group_by(!!!by_syms) |>
+    dplyr::summarise(!!!dots, .groups = "drop")
+
+  # join back on character var names
+  combined <- dplyr::left_join(combined, agg, by = by_vars)
+
+  barn_obj$combined <- combined
+  barn_obj
+}

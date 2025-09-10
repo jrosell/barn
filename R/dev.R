@@ -2,7 +2,7 @@
 #' @examples
 #' if (FALSE) {
 #'   devtools::load_all(); rebuild_package_and_check(build_site = TRUE)
-#'   rhub::rhub_setup()
+#'   # rhub::rhub_setup() # first time
 #'   rhub::rhub_check(platforms = "windows", r_versions = "4.3")
 #'   rhub::rhub_check(platforms = "linux")
 #'   usethis::use_version(which = "dev", push = FALSE)
@@ -132,7 +132,7 @@ rebuild_package_and_check <- function(build_site = FALSE) {
   devtools::load_all()
 }
 
-#' Internal helper function for package development
+#' Internal helper function for package documentation
 #' @noRd
 generate_documentation <- \(x) {
   chat <- ellmer::chat_ollama(
@@ -143,5 +143,20 @@ generate_documentation <- \(x) {
   )
   chat$chat(glue::glue("{x}")) |>
     str_replace_all("\n\n", "\n") |>
-    str_replace_all("\r\n\r\n", "\r\n")
+    str_replace_all("\r\n\r\n", "\r\n") |>
+    cat()
+}
+
+
+#' Internal helper function for package tests
+#' @noRd
+generate_tests <- \(x) {
+  chat <- ellmer::chat_ollama(
+    system_prompt = readLines("inst/prompts/testthat-generate.md"),
+    model = "qwen2.5-coder:3b"
+  )
+  chat$chat(glue::glue("{x}")) |>
+    str_replace_all("\n\n", "\n") |>
+    str_replace_all("\r\n\r\n", "\r\n") |>
+    cat()
 }

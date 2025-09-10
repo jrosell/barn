@@ -114,3 +114,11 @@ test_that("plant_decimals_round correctly rounds numeric columns", {
   expect_type(result$x_r2_num, "double")
   expect_type(result$x_r3_num, "double")
 })
+
+
+test_that("plant_summarize adds new columns based on summarise outputs", {
+  df1 <- data.frame(x = c(1, 2, 2), y = c(4, 5, 6))
+  df2 <- data.frame(x = c(7, 8, 8), y = c(10, 11, 12))
+  barn_obj <- barn(df1, df2) |> plant_summarize(.by = x, z = sum(y))
+  expect_type(barn_obj$combined$z, "double")
+})
